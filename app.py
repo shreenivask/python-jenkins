@@ -1,7 +1,6 @@
 from flask import Flask, render_template
 from flask_session import Session
 from config import Config
-from models import db
  
 app = Flask(__name__)
 app.config.from_object(Config)
