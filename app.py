@@ -1,10 +1,19 @@
-from flask import *
-
+from flask import Flask, render_template
+from flask_session import Session
+from config import Config
+from models import db
+ 
 app = Flask(__name__)
+app.config.from_object(Config)
 
-@app.route('/')
+app.config["SESSION_TYPE"] = "filesystem"
+app.config["SESSION_PERMANENT"] = False
+app.config.from_object(__name__)
+Session(app)
+
+@app.route("/")
 def home():
-    return "<h1>Welcome to Jenkins Tutorials<h1/>"
+    return render_template("index.html")
 
-if __name__ == '__main__':
-    app.run(debug=True,host='0.0.0.0')
+if __name__ == "__main__":
+    app.run(debug=True)
