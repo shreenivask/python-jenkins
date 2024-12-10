@@ -1,7 +1,7 @@
 def img
 pipeline {
     environment {
-        registry = "ashishmj/python-jenkins" //To push an image to Docker Hub, you must first name your local image using your Docker Hub username and the repository name that you created through Docker Hub on the web.
+        registry = "shreenivaslk/python-jenkins" //To push an image to Docker Hub, you must first name your local image using your Docker Hub username and the repository name that you created through Docker Hub on the web.
         registryCredential = 'DOCKERHUB'
         githubCredential = 'GITHUB'
         dockerImage = ''
@@ -11,15 +11,15 @@ pipeline {
         
         stage('checkout') {
                 steps {
-                git branch: 'master',
+                git branch: 'main',
                 credentialsId: githubCredential,
-                url: 'https://github.com/ashish-mj/Jenkins.git'
+                url: 'https://github.com/shreenivask/python-jenkins.git'
                 }
         }
         
         stage ('Test'){
                 steps {
-                sh "pytest testRoutes.py"
+                sh "pytest app.py"
                 }
         }
         
@@ -53,7 +53,7 @@ pipeline {
                     
         stage('Deploy') {
            steps {
-                sh label: '', script: "docker run -d --name ${JOB_NAME} -p 5000:5000 ${img}"
+                sh label: '', script: "docker run -d -p 8000:8000 ${img}"
           }
         }
 
