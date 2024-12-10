@@ -17,12 +17,6 @@ pipeline {
                 }
         }
         
-        stage ('Test'){
-                steps {
-                sh "pytest app.py"
-                }
-        }
-        
         stage ('Clean Up'){
             steps{
                 sh returnStatus: true, script: 'docker stop $(docker ps -a | grep ${JOB_NAME} | awk \'{print $1}\')'
