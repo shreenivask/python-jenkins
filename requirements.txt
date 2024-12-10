@@ -1,4 +1,4 @@
-Flask==2.2.5
-Flask-Session==0.8.0
-pytest==7.4.4
-gunicorn==22.0.0
+flask
+flask-session
+pytest
+gunicorn
