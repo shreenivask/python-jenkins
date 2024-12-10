@@ -11,7 +11,7 @@ pipeline {
         
         stage('checkout') {
                 steps {
-                git branch: 'main',
+                git branch: 'aws-sample',
                 credentialsId: githubCredential,
                 url: 'https://github.com/shreenivask/python-jenkins.git'
                 }
