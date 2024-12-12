@@ -1,1 +1,1 @@
-# python-jenkins
+# Python app based Flask framework with database.

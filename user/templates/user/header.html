@@ -1,0 +1,15 @@
+<div class="header">
+    <div class="icon-section">
+        <h1 class="heading">Dashboard</h1>
+    </div>
+
+    <div class="profile-info">
+        <img class="profile-picture" src="{{ url_for('user_bp.static', filename='images/user.png') }}"
+            alt="Profile Picture">
+
+        <div class="dropdown-menu">
+            <a href="{{ url_for('user_bp.logout') }}" class="dropdown-item">Log Out</a>
+        </div>
+        <span>{% if session.name %} {{ session.name }} {% endif %}</span>
+    </div>
+</div>

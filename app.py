@@ -1,10 +1,24 @@
-from flask import *
-
+from flask import Flask, redirect, url_for
+from user.routes import user_bp
+from flask_session import Session
+from config import Config
+from models import db
+ 
 app = Flask(__name__)
+app.config.from_object(Config)
 
-@app.route('/')
+db.init_app(app)
+
+app.config["SESSION_TYPE"] = "filesystem"
+app.config["SESSION_PERMANENT"] = False
+app.config.from_object(__name__)
+Session(app)
+
+app.register_blueprint(user_bp, url_prefix="/user")
+
+@app.route("/")
 def home():
-    return "<h1>Welcome to Jenkins Tutorials<h1/>"
+    return redirect(url_for('user_bp.login'))
 
-if __name__ == '__main__':
-    app.run(debug=True,host='0.0.0.0')
+if __name__ == "__main__":
+    app.run(debug=True)

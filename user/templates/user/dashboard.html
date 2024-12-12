@@ -1,0 +1,26 @@
+{% extends "user/base.html" %}
+{% block title %} Dashboard {% endblock %}
+{% block content %}
+<div class="defaultSec">
+    <div class="tables">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody class="">
+                {% for user in all_users %}
+                <tr>
+                    <td>{{ user.first_name }} {{ user.last_name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.phone }}</td>
+                <tr>
+                    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

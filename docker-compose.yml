@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+    flask-app:
+        container_name: flask-app
+        build: .
+        restart: unless-stopped
+        ports:
+            - '5000:5000'
+        volumes:
+            - .:/app
+        links:
+            - mysql-db
+        depends_on:
+            - mysql-db
+    mysql-db:
+        container_name: mysql-db
+        build: mysqldockerfile/.
+        restart: unless-stopped
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+        volumes:
+            - ./database:/var/lib/mysql
+
